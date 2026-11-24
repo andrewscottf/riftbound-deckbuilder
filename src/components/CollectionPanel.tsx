@@ -36,7 +36,7 @@ export default function CollectionPanel({ user, cards }: Props) {
     const card = cardMap.get(row.card_id);
     return card && (card.name.toLowerCase().includes(query.toLowerCase()) ||
       card.type.toLowerCase().includes(query.toLowerCase()) ||
-      card.code.toLowerCase().includes(query.toLowerCase()));
+      (card.code || '').toLowerCase().includes(query.toLowerCase()));
   }), [rows, cardMap, query]);
   const total = rows.reduce((sum, row) => sum + row.quantity, 0);
   const unique = new Set(rows.map(row => row.card_id)).size;
